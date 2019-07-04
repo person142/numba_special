@@ -1,0 +1,20 @@
+{
+    "erf": {
+	"double": ["c_double", "c_double"]
+    },
+    "erfc": {
+	"double": ["c_double", "c_double"]
+    },
+    "erfcx": {
+	"double": ["c_double", "c_double"]
+    },
+    "erfi": {
+	"double": ["c_double", "c_double"]
+    },
+    "exp1": {
+	"double": ["c_double", "c_double"]
+    },
+    "gamma": {
+	"double": ["c_double", "c_double"]
+    }
+}

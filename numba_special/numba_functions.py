@@ -11,9 +11,13 @@ signatures = {
 }
 
 
+def get_scalar_function(name):
+    signature = signatures[name]
+    pointer = function_pointers.functions[name]
+    return signature(pointer)
+
+
 @numba.extending.overload(sc.gamma)
 def gamma(x):
     if isinstance(x, types.float64):
-        signature = signatures['gamma[double]']
-        pointer = function_pointers.functions['gamma[double]']
-        return signature(pointer)
+        return get_scalar_function('gamma[double]')

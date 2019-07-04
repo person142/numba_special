@@ -2,7 +2,6 @@ import os
 import json
 
 PWD = os.path.abspath(os.path.dirname(__file__))
-MODULE = os.path.join(PWD, 'numba_special')
 
 FUNCTION_POINTERS_TEMPLATE = """
 #cython: language_level=3
@@ -66,7 +65,7 @@ def generate_function_pointers(signatures):
 
     functions = '    ' + ',\n    '.join(functions)
     content = FUNCTION_POINTERS_TEMPLATE.format(FUNCTIONS=functions)
-    with open(os.path.join(MODULE, 'function_pointers.pyx'), 'w') as f:
+    with open(os.path.join(PWD, 'function_pointers.pyx'), 'w') as f:
         f.write(content)
 
 
@@ -92,7 +91,7 @@ def generate_numba_overloads(signatures):
     content = NUMBA_OVERLOADS_TEMPLATE.format(
         FUNCTIONS=functions, OVERLOADS=overloads,
     )
-    with open(os.path.join(MODULE, 'numba_overloads.py'), 'w') as f:
+    with open(os.path.join(PWD, 'numba_overloads.py'), 'w') as f:
         f.write(content)
 
 

@@ -13,8 +13,7 @@ functions = {
     'erfcx_double': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'erfi_double': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'exp1_double': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
-    'gamma_double': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
-    'jv_double': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double)
+    'gamma_double': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double)
 }
 
 
@@ -64,12 +63,5 @@ def exp1(x):
 def gamma(x):
     if x == numba.types.float64:
         f = get_scalar_function('gamma_double')
-        return lambda x: f(x)
-
-
-@numba.extending.overload(sc.jv)
-def jv(x):
-    if x == numba.types.float64:
-        f = get_scalar_function('jv_double')
         return lambda x: f(x)
 

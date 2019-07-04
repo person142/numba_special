@@ -1,19 +1,57 @@
+import os
+import json
+import itertools
+
+import pytest
+
+import numpy as np
 import numba
 import scipy.special as sc
 import numba_special
 
+SIGNATURES_FILE = os.path.join(
+    os.path.dirname(numba_special.__file__),
+    'signatures.json',
+)
 
-def test_erf():
+CTYPES_TO_TEST_POINTS = {
+    'c_double': [-100.0, -10.0, -1.0, -0.1, 0.0, 0.1, 1.0, 10.0, 100.0],
+}
+
+
+def get_signatures():
+    with open(SIGNATURES_FILE) as f:
+        signatures = json.load(f)
+    return signatures
+
+
+def get_parametrize_arguments():
+    signatures = get_signatures()
+    for name, specializations in signatures.items():
+        for ctypes_signature in specializations.values():
+            # The first value in `ctypes_signature` is the return
+            # type, which we don't need to evaluate the function.
+            yield name, ctypes_signature[1:]
+
+
+@pytest.mark.parametrize(
+    'name, ctypes_args',
+    get_parametrize_arguments(),
+)
+def test_function(name, ctypes_args):
+    f = getattr(sc, name)
+
     @numba.njit
-    def erf_wrapper(x):
-        return sc.erf(x)
+    def wrapper(*args):
+        return f(*args)
 
-    assert erf_wrapper(2.0) == sc.erf(2.0)
-
-
-def test_gamma():
-    @numba.njit
-    def gamma_wrapper(x):
-        return sc.gamma(x)
-
-    assert gamma_wrapper(5.0) == sc.gamma(5.0)
+    args = itertools.product(*(
+        CTYPES_TO_TEST_POINTS[ctype] for ctype in ctypes_args
+    ))
+    for arg in args:
+        overload_value = wrapper(*arg)
+        scipy_value = f(*arg)
+        if np.isnan(overload_value):
+            assert np.isnan(scipy_value)
+        else:
+            assert overload_value == scipy_value

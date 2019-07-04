@@ -2,4 +2,4 @@
 **.c
 **.so
 build
-numba_special/__pycache__
+**/__pycache__

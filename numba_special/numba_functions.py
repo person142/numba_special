@@ -7,7 +7,7 @@ from . import function_pointers
 
 
 signatures = {
-    'gamma[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
+    'gamma_double': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
 }
 
 
@@ -19,5 +19,6 @@ def get_scalar_function(name):
 
 @numba.extending.overload(sc.gamma)
 def gamma(x):
-    if isinstance(x, types.float64):
-        return get_scalar_function('gamma[double]')
+    if x == numba.types.float64:
+        f = get_scalar_function('gamma_double')
+        return lambda x: f(x)

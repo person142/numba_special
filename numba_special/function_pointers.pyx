@@ -5,5 +5,5 @@ cimport scipy.special.cython_special as sc
 
 
 functions = {
-    'gamma[double]': PyLong_FromVoidPtr(<void *>sc.gamma[double])
+    'gamma_double': PyLong_FromVoidPtr(<void *>sc.gamma[double])
 }

@@ -42,7 +42,7 @@ OVERLOAD_TEMPLATE = """
 @numba.extending.overload(sc.{FUNCTION})
 def {FUNCTION}(x):
     if x == numba.types.float64:
-        f = get_scalar_function('{FUNCTION}_{TYPE}')
+        f = get_scalar_function('{SPECIALIZED_NAME}')
         return lambda x: f(x)
 """
 
@@ -53,12 +53,20 @@ def get_signatures():
     return signatures
 
 
+def get_specialized_name(name, cython_key):
+    if cython_key == '':
+        # Not a fused type function, so no need to specialize.
+        return name
+    else:
+        return '{}[{}]'.format(name, cython_key)
+
+
 def generate_function_pointers(signatures):
     functions = []
     for name, specialization in signatures.items():
         for cython_key in specialization.keys():
-            specialized_name = '{}_{}'.format(name, cython_key)
-            cast = '<void *>sc.{}[{}]'.format(name, cython_key)
+            specialized_name = get_specialized_name(name, cython_key)
+            cast = '<void *>sc.{}'.format(specialized_name)
             functions.append("'{}': PyLong_FromVoidPtr({})".format(
                 specialized_name, cast,
             ))
@@ -74,7 +82,7 @@ def generate_numba_overloads(signatures):
     overloads = []
     for name, specialization in signatures.items():
         for cython_key, ctypes_signature in specialization.items():
-            specialized_name = '{}_{}'.format(name, cython_key)
+            specialized_name = get_specialized_name(name, cython_key)
             ctypes_signature = [
                 'ctypes.{}'.format(t) for t in ctypes_signature
             ]
@@ -83,7 +91,7 @@ def generate_numba_overloads(signatures):
                 specialized_name, joined_ctypes,
             ))
             overloads.append(OVERLOAD_TEMPLATE.format(
-                FUNCTION=name, TYPE=cython_key,
+                FUNCTION=name, SPECIALIZED_NAME=specialized_name,
             ))
 
     functions = '    ' + ',\n    '.join(functions)

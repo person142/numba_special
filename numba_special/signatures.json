@@ -1,4 +1,7 @@
 {
+    "cbrt": {
+	"": ["c_double", "c_double"]
+    },
     "erf": {
 	"double": ["c_double", "c_double"]
     },

@@ -12,5 +12,7 @@ functions = {
     'erfcx[double]': PyLong_FromVoidPtr(<void *>sc.erfcx[double]),
     'erfi[double]': PyLong_FromVoidPtr(<void *>sc.erfi[double]),
     'exp1[double]': PyLong_FromVoidPtr(<void *>sc.exp1[double]),
-    'gamma[double]': PyLong_FromVoidPtr(<void *>sc.gamma[double])
+    'gamma[double]': PyLong_FromVoidPtr(<void *>sc.gamma[double]),
+    'j0': PyLong_FromVoidPtr(<void *>sc.j0),
+    'jv[double]': PyLong_FromVoidPtr(<void *>sc.jv[double])
 }

@@ -19,5 +19,11 @@
     },
     "gamma": {
 	"double": ["c_double", "c_double"]
+    },
+    "j0": {
+	"": ["c_double", "c_double"]
+    },
+    "jv": {
+	"double": ["c_double", "c_double", "c_double"]
     }
 }

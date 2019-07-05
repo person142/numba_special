@@ -38,13 +38,19 @@ def get_scalar_function(name):
 {OVERLOADS}
 """
 
-OVERLOAD_TEMPLATE = """
+OVERLOAD_HEADER = """
 @numba.extending.overload(sc.{FUNCTION})
-def {FUNCTION}(x):
-    if x == numba.types.float64:
+def {FUNCTION}(*args):"""
+
+OVERLOAD_BLOCK = """
+    if args == {NUMBA_TYPES}:
         f = get_scalar_function('{SPECIALIZED_NAME}')
-        return lambda x: f(x)
+        return lambda *args: f(*args)
 """
+
+CTYPES_TO_NUMBA_TYPES = {
+    'c_double': 'numba.types.float64'
+}
 
 
 def get_signatures():
@@ -63,8 +69,8 @@ def get_specialized_name(name, cython_key):
 
 def generate_function_pointers(signatures):
     functions = []
-    for name, specialization in signatures.items():
-        for cython_key in specialization.keys():
+    for name, specializations in signatures.items():
+        for cython_key in specializations.keys():
             specialized_name = get_specialized_name(name, cython_key)
             cast = '<void *>sc.{}'.format(specialized_name)
             functions.append("'{}': PyLong_FromVoidPtr({})".format(
@@ -77,11 +83,24 @@ def generate_function_pointers(signatures):
         f.write(content)
 
 
+def generate_overload(name, specializations):
+    overload = OVERLOAD_HEADER.format(FUNCTION=name)
+    for cython_key, ctypes_signature in specializations.items():
+        ctypes_signature = ctypes_signature[1:]
+        numba_types = (CTYPES_TO_NUMBA_TYPES[arg] for arg in ctypes_signature)
+        specialized_name = get_specialized_name(name, cython_key)
+        overload += OVERLOAD_BLOCK.format(
+            NUMBA_TYPES='({},)'.format(', '.join(numba_types)),
+            SPECIALIZED_NAME=specialized_name,
+        )
+    return overload
+
+
 def generate_numba_overloads(signatures):
     functions = []
     overloads = []
-    for name, specialization in signatures.items():
-        for cython_key, ctypes_signature in specialization.items():
+    for name, specializations in signatures.items():
+        for cython_key, ctypes_signature in specializations.items():
             specialized_name = get_specialized_name(name, cython_key)
             ctypes_signature = [
                 'ctypes.{}'.format(t) for t in ctypes_signature
@@ -90,9 +109,8 @@ def generate_numba_overloads(signatures):
             functions.append("'{}': ctypes.CFUNCTYPE({})".format(
                 specialized_name, joined_ctypes,
             ))
-            overloads.append(OVERLOAD_TEMPLATE.format(
-                FUNCTION=name, SPECIALIZED_NAME=specialized_name,
-            ))
+
+        overloads.append(generate_overload(name, specializations))
 
     functions = '    ' + ',\n    '.join(functions)
     overloads = '\n'.join(overloads)

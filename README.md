@@ -1,5 +1,7 @@
 # Numba Special
 
+[![CircleCI](https://circleci.com/gh/person142/numba_special/tree/master.svg?style=svg)](https://circleci.com/gh/person142/numba_special/tree/master)
+
 Numba special allows SciPy's special functions to be used in
 Numba.
 

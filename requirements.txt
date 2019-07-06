@@ -1,3 +1,4 @@
 scipy
+cython
 git+https://github.com/numba/numba.git/@master
 pytest

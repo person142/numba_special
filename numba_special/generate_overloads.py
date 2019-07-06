@@ -63,8 +63,9 @@ def get_specialized_name(name, cython_key):
     if cython_key == '':
         # Not a fused type function, so no need to specialize.
         return name
-    else:
-        return '{}[{}]'.format(name, cython_key)
+
+    cython_key = ', '.join(cython_key.split('|'))
+    return '{}[{}]'.format(name, cython_key)
 
 
 def generate_function_pointers(signatures):

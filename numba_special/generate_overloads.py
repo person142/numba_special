@@ -153,7 +153,7 @@ def generate_specialization_docstring_line(name, ctypes_signature):
 def generate_docstring_functions(signatures):
     functions = []
     for name, specializations in signatures.items():
-        item = '\n- :func:`scipy.special.{}`::\n'.format(name)
+        item = '\n- :data:`scipy.special.{}`::\n'.format(name)
         functions.append(item)
         for ctypes_signature in specializations.values():
             functions.append(generate_specialization_docstring_line(

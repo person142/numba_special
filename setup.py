@@ -25,11 +25,11 @@ setup(
     description="Numba overloads for SciPy's special functions",
     long_description=get_long_description(),
     long_description_content_type='text/markdown',
-    version='0.1.0rc1',
+    version='0.1.0rc2',
     author='Josh Wilson',
     url='https://github.com/person142/numba_special',
     packages=['numba_special'],
     package_data={'numba_special': ['signatures.json']},
     ext_modules=cythonize(EXT_MODULES),
-    install_requires=['numba', 'scipy']
+    install_requires=['cython', 'numba', 'scipy']
 )

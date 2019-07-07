@@ -25,8 +25,7 @@ check the
 
 ## Installing
 
-Building and installing `numba_special` requires Cython, SciPy, and
-Numba. Until the fix for [this
-issue](https://github.com/numba/numba/issues/4133) is included in a
-Numba release, `numba_special` must be built against the master branch
-of Numba.
+Numba special depends on SciPy and Numba. Until the fix for
+[this issue](https://github.com/numba/numba/issues/4133) is
+included in a Numba release, `numba_special` must be installed
+against the master branch of Numba.

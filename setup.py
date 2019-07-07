@@ -36,7 +36,7 @@ setup(
     description="Numba overloads for SciPy's special functions",
     long_description=get_long_description(),
     long_description_content_type='text/markdown',
-    version='0.1.0',
+    version='0.1.1',
     author='Josh Wilson',
     url='https://github.com/person142/numba_special',
     packages=['numba_special'],

@@ -2,5 +2,7 @@
 **.c
 **.so
 build
+dist
+numba_special.egg-info
 doc/build
 **/__pycache__

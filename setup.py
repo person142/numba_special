@@ -1,5 +1,5 @@
 import os
-from distutils.core import setup, Extension
+from setuptools import setup, Extension
 from Cython.Build import cythonize
 
 EXT_MODULES = [
@@ -9,14 +9,27 @@ EXT_MODULES = [
     )
 ]
 
+
+def get_long_description():
+    readme = os.path.join(
+        os.path.abspath(os.path.dirname(__file__)),
+        'README.md'
+    )
+    with open(readme, encoding='utf-8') as f:
+        long_description = f.read()
+    return long_description
+
+
 setup(
     name='numba_special',
     description="Numba overloads for SciPy's special functions",
-    version='0.1',
+    long_description=get_long_description(),
+    long_description_content_type='text/markdown',
+    version='0.1.0rc1',
     author='Josh Wilson',
     url='https://github.com/person142/numba_special',
     packages=['numba_special'],
     package_data={'numba_special': ['signatures.json']},
-    ext_modules = cythonize(EXT_MODULES),
+    ext_modules=cythonize(EXT_MODULES),
     install_requires=['numba', 'scipy']
 )

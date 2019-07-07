@@ -4,3 +4,4 @@ git+https://github.com/numba/numba.git/@master
 pytest
 sphinx
 sphinx_rtd_theme
+twine

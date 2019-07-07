@@ -2,4 +2,5 @@
 **.c
 **.so
 build
+doc/build
 **/__pycache__

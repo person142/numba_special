@@ -48,8 +48,24 @@ OVERLOAD_BLOCK = """
         return lambda *args: f(*args)
 """
 
+INIT_TEMPLATE = '''"""
+Available overloads
+===================
+
+The following variants of SciPy's special functions can be used inside
+Numba jitted code.
+{FUNCTIONS}
+"""
+from . import numba_overloads
+'''
+
+
 CTYPES_TO_NUMBA_TYPES = {
     'c_double': 'numba.types.float64'
+}
+
+CTYPES_TO_SHORT_NUMBA_TYPES = {
+    'c_double': 'float64'
 }
 
 
@@ -122,10 +138,42 @@ def generate_numba_overloads(signatures):
         f.write(content)
 
 
+def generate_specialization_docstring_line(name, ctypes_signature):
+    args = ', '.join(
+        CTYPES_TO_SHORT_NUMBA_TYPES[arg]
+        for arg in ctypes_signature[1:]
+    )
+    return '    {RETURN} {NAME}({ARGS})'.format(
+        RETURN=CTYPES_TO_SHORT_NUMBA_TYPES[ctypes_signature[0]],
+        NAME=name,
+        ARGS=args,
+    )
+
+
+def generate_docstring_functions(signatures):
+    functions = []
+    for name, specializations in signatures.items():
+        item = '\n- :func:`scipy.special.{}`::\n'.format(name)
+        functions.append(item)
+        for ctypes_signature in specializations.values():
+            functions.append(generate_specialization_docstring_line(
+                name, ctypes_signature
+            ))
+    return '\n'.join(functions)
+
+
+def generate_init(signatures):
+    functions = generate_docstring_functions(signatures)
+    content = INIT_TEMPLATE.format(FUNCTIONS=functions)
+    with open(os.path.join(PWD, '__init__.py'), 'w') as f:
+        f.write(content)
+
+
 def main():
     signatures = get_signatures()
     generate_function_pointers(signatures)
     generate_numba_overloads(signatures)
+    generate_init(signatures)
 
 
 if __name__ == '__main__':

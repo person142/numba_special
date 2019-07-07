@@ -40,7 +40,10 @@ setup(
     author='Josh Wilson',
     url='https://github.com/person142/numba_special',
     packages=['numba_special'],
-    package_data={'numba_special': ['signatures.json']},
+    package_data={'numba_special': [
+        'signatures.json',
+        'function_pointers.pyx'
+    ]},
     ext_modules=get_extension_modules(),
     install_requires=['numba', 'scipy']
 )

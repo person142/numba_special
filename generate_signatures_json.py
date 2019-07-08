@@ -14,11 +14,13 @@ SIGNATURES_FILE = os.path.join(
 SIGNATURE_REGEX = ' *([a-z \*]+) ([a-zA-Z0-9_]+)\((.*)\)'
 
 SPECIAL_DOC_TO_CTYPES = {
-    'double': 'c_double'
+    'double': 'c_double',
+    'long': 'c_long'
 }
 
 SPECIAL_DOC_TO_CYTHON_SPECIALIZATION = {
-    'double': 'double'
+    'double': 'double',
+    'long': 'long'
 }
 
 

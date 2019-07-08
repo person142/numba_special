@@ -10,8 +10,11 @@ from . import function_pointers
 functions = {
     'agm': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'bdtr[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'bdtr[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_long, ctypes.c_double),
     'bdtrc[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'bdtrc[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_long, ctypes.c_double),
     'bdtri[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'bdtri[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_long, ctypes.c_double),
     'bdtrik': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'bdtrin': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'bei': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
@@ -53,18 +56,33 @@ functions = {
     'erfcx[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'erfi[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'eval_chebyc[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_chebyc[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'eval_chebys[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_chebys[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'eval_chebyt[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_chebyt[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'eval_chebyu[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_chebyu[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'eval_gegenbauer[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_gegenbauer[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double, ctypes.c_double),
     'eval_genlaguerre[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_genlaguerre[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double, ctypes.c_double),
+    'eval_hermite': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
+    'eval_hermitenorm': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'eval_jacobi[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_jacobi[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'eval_laguerre[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_laguerre[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'eval_legendre[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_legendre[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'eval_sh_chebyt[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_sh_chebyt[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'eval_sh_chebyu[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_sh_chebyu[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'eval_sh_jacobi[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_sh_jacobi[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'eval_sh_legendre[double, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'eval_sh_legendre[long, double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'exp1[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'exp10': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'exp2': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
@@ -72,6 +90,7 @@ functions = {
     'expit[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'expm1[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'expn[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'expn[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'exprel': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'fdtr': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'fdtrc': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
@@ -119,6 +138,7 @@ functions = {
     'kerp': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'kl_div': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'kn[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'kn[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'kolmogi': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'kolmogorov': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'kv[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
@@ -132,8 +152,11 @@ functions = {
     'mathieu_b': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'modstruve': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'nbdtr[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'nbdtr[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_long, ctypes.c_double),
     'nbdtrc[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'nbdtrc[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_long, ctypes.c_double),
     'nbdtri[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'nbdtri[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_long, ctypes.c_double),
     'nbdtrik': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'nbdtrin': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'ncfdtr': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
@@ -152,8 +175,11 @@ functions = {
     'obl_cv': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'owens_t': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'pdtr[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'pdtr[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'pdtrc[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'pdtrc[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'pdtri[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'pdtri[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'pdtrik': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'poch': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'pro_cv': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
@@ -165,7 +191,9 @@ functions = {
     'round': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'sindg': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'smirnov[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'smirnov[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'smirnovi[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'smirnovi[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'spence[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'stdtr': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'stdtridf': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
@@ -178,6 +206,7 @@ functions = {
     'y0': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'y1': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'yn[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
+    'yn[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
     'yv[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'yve[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'zetac': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double)
@@ -204,6 +233,10 @@ def bdtr(*args):
         f = get_scalar_function('bdtr[double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('bdtr[long]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.bdtrc)
 def bdtrc(*args):
@@ -211,11 +244,19 @@ def bdtrc(*args):
         f = get_scalar_function('bdtrc[double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('bdtrc[long]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.bdtri)
 def bdtri(*args):
     if args == (numba.types.float64, numba.types.float64, numba.types.float64,):
         f = get_scalar_function('bdtri[double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.int64, numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('bdtri[long]')
         return lambda *args: f(*args)
 
 
@@ -505,11 +546,19 @@ def eval_chebyc(*args):
         f = get_scalar_function('eval_chebyc[double, double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('eval_chebyc[long, double]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.eval_chebys)
 def eval_chebys(*args):
     if args == (numba.types.float64, numba.types.float64,):
         f = get_scalar_function('eval_chebys[double, double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('eval_chebys[long, double]')
         return lambda *args: f(*args)
 
 
@@ -519,11 +568,19 @@ def eval_chebyt(*args):
         f = get_scalar_function('eval_chebyt[double, double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('eval_chebyt[long, double]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.eval_chebyu)
 def eval_chebyu(*args):
     if args == (numba.types.float64, numba.types.float64,):
         f = get_scalar_function('eval_chebyu[double, double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('eval_chebyu[long, double]')
         return lambda *args: f(*args)
 
 
@@ -533,11 +590,33 @@ def eval_gegenbauer(*args):
         f = get_scalar_function('eval_gegenbauer[double, double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.float64, numba.types.float64,):
+        f = get_scalar_function('eval_gegenbauer[long, double]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.eval_genlaguerre)
 def eval_genlaguerre(*args):
     if args == (numba.types.float64, numba.types.float64, numba.types.float64,):
         f = get_scalar_function('eval_genlaguerre[double, double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.int64, numba.types.float64, numba.types.float64,):
+        f = get_scalar_function('eval_genlaguerre[long, double]')
+        return lambda *args: f(*args)
+
+
+@numba.extending.overload(sc.eval_hermite)
+def eval_hermite(*args):
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('eval_hermite')
+        return lambda *args: f(*args)
+
+
+@numba.extending.overload(sc.eval_hermitenorm)
+def eval_hermitenorm(*args):
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('eval_hermitenorm')
         return lambda *args: f(*args)
 
 
@@ -547,11 +626,19 @@ def eval_jacobi(*args):
         f = get_scalar_function('eval_jacobi[double, double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.float64, numba.types.float64, numba.types.float64,):
+        f = get_scalar_function('eval_jacobi[long, double]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.eval_laguerre)
 def eval_laguerre(*args):
     if args == (numba.types.float64, numba.types.float64,):
         f = get_scalar_function('eval_laguerre[double, double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('eval_laguerre[long, double]')
         return lambda *args: f(*args)
 
 
@@ -561,11 +648,19 @@ def eval_legendre(*args):
         f = get_scalar_function('eval_legendre[double, double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('eval_legendre[long, double]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.eval_sh_chebyt)
 def eval_sh_chebyt(*args):
     if args == (numba.types.float64, numba.types.float64,):
         f = get_scalar_function('eval_sh_chebyt[double, double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('eval_sh_chebyt[long, double]')
         return lambda *args: f(*args)
 
 
@@ -575,6 +670,10 @@ def eval_sh_chebyu(*args):
         f = get_scalar_function('eval_sh_chebyu[double, double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('eval_sh_chebyu[long, double]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.eval_sh_jacobi)
 def eval_sh_jacobi(*args):
@@ -582,11 +681,19 @@ def eval_sh_jacobi(*args):
         f = get_scalar_function('eval_sh_jacobi[double, double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.float64, numba.types.float64, numba.types.float64,):
+        f = get_scalar_function('eval_sh_jacobi[long, double]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.eval_sh_legendre)
 def eval_sh_legendre(*args):
     if args == (numba.types.float64, numba.types.float64,):
         f = get_scalar_function('eval_sh_legendre[double, double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('eval_sh_legendre[long, double]')
         return lambda *args: f(*args)
 
 
@@ -636,6 +743,10 @@ def expm1(*args):
 def expn(*args):
     if args == (numba.types.float64, numba.types.float64,):
         f = get_scalar_function('expn[double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('expn[long]')
         return lambda *args: f(*args)
 
 
@@ -967,6 +1078,10 @@ def kn(*args):
         f = get_scalar_function('kn[double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('kn[long]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.kolmogi)
 def kolmogi(*args):
@@ -1058,6 +1173,10 @@ def nbdtr(*args):
         f = get_scalar_function('nbdtr[double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('nbdtr[long]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.nbdtrc)
 def nbdtrc(*args):
@@ -1065,11 +1184,19 @@ def nbdtrc(*args):
         f = get_scalar_function('nbdtrc[double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('nbdtrc[long]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.nbdtri)
 def nbdtri(*args):
     if args == (numba.types.float64, numba.types.float64, numba.types.float64,):
         f = get_scalar_function('nbdtri[double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.int64, numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('nbdtri[long]')
         return lambda *args: f(*args)
 
 
@@ -1198,6 +1325,10 @@ def pdtr(*args):
         f = get_scalar_function('pdtr[double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('pdtr[long]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.pdtrc)
 def pdtrc(*args):
@@ -1205,11 +1336,19 @@ def pdtrc(*args):
         f = get_scalar_function('pdtrc[double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('pdtrc[long]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.pdtri)
 def pdtri(*args):
     if args == (numba.types.float64, numba.types.float64,):
         f = get_scalar_function('pdtri[double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('pdtri[long]')
         return lambda *args: f(*args)
 
 
@@ -1289,11 +1428,19 @@ def smirnov(*args):
         f = get_scalar_function('smirnov[double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('smirnov[long]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.smirnovi)
 def smirnovi(*args):
     if args == (numba.types.float64, numba.types.float64,):
         f = get_scalar_function('smirnovi[double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('smirnovi[long]')
         return lambda *args: f(*args)
 
 
@@ -1378,6 +1525,10 @@ def y1(*args):
 def yn(*args):
     if args == (numba.types.float64, numba.types.float64,):
         f = get_scalar_function('yn[double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.int64, numba.types.float64,):
+        f = get_scalar_function('yn[long]')
         return lambda *args: f(*args)
 
 

@@ -1,5 +1,6 @@
 import os
 import json
+import ctypes
 
 PWD = os.path.abspath(os.path.dirname(__file__))
 
@@ -53,7 +54,15 @@ Available overloads
 ===================
 
 The following variants of SciPy's special functions can be used inside
-Numba jitted code.
+Numba jitted code. Arguments are specified by their Numba types except
+for the C ``long`` type, where an equivalent Numba type does not
+exist. To determine what Numba integer type ``long`` is on your
+system, run::
+
+  >>> import ctypes
+  >>> 8 * ctypes.sizeof(ctypes.c_long)
+
+Common values are ``int32`` and ``int64``.
 {FUNCTIONS}
 """
 from . import numba_overloads
@@ -61,11 +70,13 @@ from . import numba_overloads
 
 
 CTYPES_TO_NUMBA_TYPES = {
-    'c_double': 'numba.types.float64'
+    'c_double': 'numba.types.float64',
+    'c_long': 'numba.types.int{}'.format(8 * ctypes.sizeof(ctypes.c_long))
 }
 
 CTYPES_TO_SHORT_NUMBA_TYPES = {
-    'c_double': 'float64'
+    'c_double': 'float64',
+    'c_long': 'long'
 }
 
 

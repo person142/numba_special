@@ -3,7 +3,15 @@ Available overloads
 ===================
 
 The following variants of SciPy's special functions can be used inside
-Numba jitted code.
+Numba jitted code. Arguments are specified by their Numba types except
+for the C ``long`` type, where an equivalent Numba type does not
+exist. To determine what Numba integer type ``long`` is on your
+system, run::
+
+  >>> import ctypes
+  >>> 8 * ctypes.sizeof(ctypes.c_long)
+
+Common values are ``int32`` and ``int64``.
 
 - :data:`scipy.special.agm`::
 
@@ -12,14 +20,17 @@ Numba jitted code.
 - :data:`scipy.special.bdtr`::
 
     float64 bdtr(float64, float64, float64)
+    float64 bdtr(long, long, float64)
 
 - :data:`scipy.special.bdtrc`::
 
     float64 bdtrc(float64, float64, float64)
+    float64 bdtrc(long, long, float64)
 
 - :data:`scipy.special.bdtri`::
 
     float64 bdtri(float64, float64, float64)
+    float64 bdtri(long, long, float64)
 
 - :data:`scipy.special.bdtrik`::
 
@@ -184,54 +195,75 @@ Numba jitted code.
 - :data:`scipy.special.eval_chebyc`::
 
     float64 eval_chebyc(float64, float64)
+    float64 eval_chebyc(long, float64)
 
 - :data:`scipy.special.eval_chebys`::
 
     float64 eval_chebys(float64, float64)
+    float64 eval_chebys(long, float64)
 
 - :data:`scipy.special.eval_chebyt`::
 
     float64 eval_chebyt(float64, float64)
+    float64 eval_chebyt(long, float64)
 
 - :data:`scipy.special.eval_chebyu`::
 
     float64 eval_chebyu(float64, float64)
+    float64 eval_chebyu(long, float64)
 
 - :data:`scipy.special.eval_gegenbauer`::
 
     float64 eval_gegenbauer(float64, float64, float64)
+    float64 eval_gegenbauer(long, float64, float64)
 
 - :data:`scipy.special.eval_genlaguerre`::
 
     float64 eval_genlaguerre(float64, float64, float64)
+    float64 eval_genlaguerre(long, float64, float64)
+
+- :data:`scipy.special.eval_hermite`::
+
+    float64 eval_hermite(long, float64)
+
+- :data:`scipy.special.eval_hermitenorm`::
+
+    float64 eval_hermitenorm(long, float64)
 
 - :data:`scipy.special.eval_jacobi`::
 
     float64 eval_jacobi(float64, float64, float64, float64)
+    float64 eval_jacobi(long, float64, float64, float64)
 
 - :data:`scipy.special.eval_laguerre`::
 
     float64 eval_laguerre(float64, float64)
+    float64 eval_laguerre(long, float64)
 
 - :data:`scipy.special.eval_legendre`::
 
     float64 eval_legendre(float64, float64)
+    float64 eval_legendre(long, float64)
 
 - :data:`scipy.special.eval_sh_chebyt`::
 
     float64 eval_sh_chebyt(float64, float64)
+    float64 eval_sh_chebyt(long, float64)
 
 - :data:`scipy.special.eval_sh_chebyu`::
 
     float64 eval_sh_chebyu(float64, float64)
+    float64 eval_sh_chebyu(long, float64)
 
 - :data:`scipy.special.eval_sh_jacobi`::
 
     float64 eval_sh_jacobi(float64, float64, float64, float64)
+    float64 eval_sh_jacobi(long, float64, float64, float64)
 
 - :data:`scipy.special.eval_sh_legendre`::
 
     float64 eval_sh_legendre(float64, float64)
+    float64 eval_sh_legendre(long, float64)
 
 - :data:`scipy.special.exp1`::
 
@@ -260,6 +292,7 @@ Numba jitted code.
 - :data:`scipy.special.expn`::
 
     float64 expn(float64, float64)
+    float64 expn(long, float64)
 
 - :data:`scipy.special.exprel`::
 
@@ -448,6 +481,7 @@ Numba jitted code.
 - :data:`scipy.special.kn`::
 
     float64 kn(float64, float64)
+    float64 kn(long, float64)
 
 - :data:`scipy.special.kolmogi`::
 
@@ -500,14 +534,17 @@ Numba jitted code.
 - :data:`scipy.special.nbdtr`::
 
     float64 nbdtr(float64, float64, float64)
+    float64 nbdtr(long, long, float64)
 
 - :data:`scipy.special.nbdtrc`::
 
     float64 nbdtrc(float64, float64, float64)
+    float64 nbdtrc(long, long, float64)
 
 - :data:`scipy.special.nbdtri`::
 
     float64 nbdtri(float64, float64, float64)
+    float64 nbdtri(long, long, float64)
 
 - :data:`scipy.special.nbdtrik`::
 
@@ -580,14 +617,17 @@ Numba jitted code.
 - :data:`scipy.special.pdtr`::
 
     float64 pdtr(float64, float64)
+    float64 pdtr(long, float64)
 
 - :data:`scipy.special.pdtrc`::
 
     float64 pdtrc(float64, float64)
+    float64 pdtrc(long, float64)
 
 - :data:`scipy.special.pdtri`::
 
     float64 pdtri(float64, float64)
+    float64 pdtri(long, float64)
 
 - :data:`scipy.special.pdtrik`::
 
@@ -632,10 +672,12 @@ Numba jitted code.
 - :data:`scipy.special.smirnov`::
 
     float64 smirnov(float64, float64)
+    float64 smirnov(long, float64)
 
 - :data:`scipy.special.smirnovi`::
 
     float64 smirnovi(float64, float64)
+    float64 smirnovi(long, float64)
 
 - :data:`scipy.special.spence`::
 
@@ -684,6 +726,7 @@ Numba jitted code.
 - :data:`scipy.special.yn`::
 
     float64 yn(float64, float64)
+    float64 yn(long, float64)
 
 - :data:`scipy.special.yv`::
 

@@ -12,6 +12,12 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
+            "c_long",
+            "c_double"
         ]
     },
     "bdtrc": {
@@ -20,6 +26,12 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
+            "c_long",
+            "c_double"
         ]
     },
     "bdtri": {
@@ -27,6 +39,12 @@
             "c_double",
             "c_double",
             "c_double",
+            "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
+            "c_long",
             "c_double"
         ]
     },
@@ -312,12 +330,22 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
+            "c_double"
         ]
     },
     "eval_chebys": {
         "double|double": [
             "c_double",
             "c_double",
+            "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
             "c_double"
         ]
     },
@@ -326,6 +354,11 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
+            "c_double"
         ]
     },
     "eval_chebyu": {
@@ -333,12 +366,23 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
+            "c_double"
         ]
     },
     "eval_gegenbauer": {
         "double|double": [
             "c_double",
             "c_double",
+            "c_double",
+            "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
             "c_double",
             "c_double"
         ]
@@ -349,12 +393,39 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
+            "c_double",
+            "c_double"
+        ]
+    },
+    "eval_hermite": {
+        "": [
+            "c_double",
+            "c_long",
+            "c_double"
+        ]
+    },
+    "eval_hermitenorm": {
+        "": [
+            "c_double",
+            "c_long",
+            "c_double"
         ]
     },
     "eval_jacobi": {
         "double|double": [
             "c_double",
             "c_double",
+            "c_double",
+            "c_double",
+            "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
             "c_double",
             "c_double",
             "c_double"
@@ -365,12 +436,22 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
+            "c_double"
         ]
     },
     "eval_legendre": {
         "double|double": [
             "c_double",
             "c_double",
+            "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
             "c_double"
         ]
     },
@@ -379,12 +460,22 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
+            "c_double"
         ]
     },
     "eval_sh_chebyu": {
         "double|double": [
             "c_double",
             "c_double",
+            "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
             "c_double"
         ]
     },
@@ -395,12 +486,24 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
+            "c_double",
+            "c_double",
+            "c_double"
         ]
     },
     "eval_sh_legendre": {
         "double|double": [
             "c_double",
             "c_double",
+            "c_double"
+        ],
+        "long|double": [
+            "c_double",
+            "c_long",
             "c_double"
         ]
     },
@@ -444,6 +547,11 @@
         "double": [
             "c_double",
             "c_double",
+            "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
             "c_double"
         ]
     },
@@ -766,6 +874,11 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
+            "c_double"
         ]
     },
     "kolmogi": {
@@ -853,6 +966,12 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
+            "c_long",
+            "c_double"
         ]
     },
     "nbdtrc": {
@@ -861,6 +980,12 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
+            "c_long",
+            "c_double"
         ]
     },
     "nbdtri": {
@@ -868,6 +993,12 @@
             "c_double",
             "c_double",
             "c_double",
+            "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
+            "c_long",
             "c_double"
         ]
     },
@@ -1012,6 +1143,11 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
+            "c_double"
         ]
     },
     "pdtrc": {
@@ -1019,12 +1155,22 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
+            "c_double"
         ]
     },
     "pdtri": {
         "double": [
             "c_double",
             "c_double",
+            "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
             "c_double"
         ]
     },
@@ -1101,12 +1247,22 @@
             "c_double",
             "c_double",
             "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
+            "c_double"
         ]
     },
     "smirnovi": {
         "double": [
             "c_double",
             "c_double",
+            "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
             "c_double"
         ]
     },
@@ -1187,6 +1343,11 @@
         "double": [
             "c_double",
             "c_double",
+            "c_double"
+        ],
+        "long": [
+            "c_double",
+            "c_long",
             "c_double"
         ]
     },

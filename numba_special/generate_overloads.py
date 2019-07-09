@@ -24,6 +24,13 @@ import scipy.special as sc
 
 from . import function_pointers
 
+bytes_to_int_type = {{
+    2: numba.types.int16,
+    4: numba.types.int32,
+    8: numba.types.int64
+}}
+
+numba_long = bytes_to_int_type[ctypes.sizeof(ctypes.c_long)]
 
 functions = {{
 {FUNCTIONS}
@@ -71,7 +78,7 @@ from . import numba_overloads
 
 CTYPES_TO_NUMBA_TYPES = {
     'c_double': 'numba.types.float64',
-    'c_long': 'numba.types.int{}'.format(8 * ctypes.sizeof(ctypes.c_long))
+    'c_long': 'numba_long'
 }
 
 CTYPES_TO_SHORT_NUMBA_TYPES = {

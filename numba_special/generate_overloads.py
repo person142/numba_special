@@ -78,11 +78,13 @@ from . import numba_overloads
 
 CTYPES_TO_NUMBA_TYPES = {
     'c_double': 'numba.types.float64',
+    'c_float': 'numba.types.float32',
     'c_long': 'numba_long'
 }
 
 CTYPES_TO_SHORT_NUMBA_TYPES = {
     'c_double': 'float64',
+    'c_float': 'float32',
     'c_long': 'long'
 }
 

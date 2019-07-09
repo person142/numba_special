@@ -16,6 +16,10 @@ SIGNATURES_FILE = os.path.join(
 
 CTYPES_TO_TEST_POINTS = {
     'c_double': [-100.0, -10.0, -1.0, -0.1, 0.0, 0.1, 1.0, 10.0, 100.0],
+    'c_float': np.array(
+        [-100.0, -10.0, -1.0, -0.1, 0.0, 0.1, 1.0, 10.0, 100.0],
+        dtype=np.float32
+    ),
     'c_long': [-100, -10, -1, 0, 1, 10, 100],
 }
 

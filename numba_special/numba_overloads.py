@@ -95,6 +95,7 @@ functions = {
     'exp2': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'expi[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'expit[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
+    'expit[float]': ctypes.CFUNCTYPE(ctypes.c_float, ctypes.c_float),
     'expm1[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'expn[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'expn[long]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_long, ctypes.c_double),
@@ -154,6 +155,7 @@ functions = {
     'log_ndtr[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'loggamma[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
     'logit[double]': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
+    'logit[float]': ctypes.CFUNCTYPE(ctypes.c_float, ctypes.c_float),
     'lpmv': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'mathieu_a': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
     'mathieu_b': ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double, ctypes.c_double),
@@ -738,6 +740,10 @@ def expit(*args):
         f = get_scalar_function('expit[double]')
         return lambda *args: f(*args)
 
+    if args == (numba.types.float32,):
+        f = get_scalar_function('expit[float]')
+        return lambda *args: f(*args)
+
 
 @numba.extending.overload(sc.expm1)
 def expm1(*args):
@@ -1143,6 +1149,10 @@ def loggamma(*args):
 def logit(*args):
     if args == (numba.types.float64,):
         f = get_scalar_function('logit[double]')
+        return lambda *args: f(*args)
+
+    if args == (numba.types.float32,):
+        f = get_scalar_function('logit[float]')
         return lambda *args: f(*args)
 
 

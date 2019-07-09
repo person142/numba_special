@@ -535,6 +535,10 @@
         "double": [
             "c_double",
             "c_double"
+        ],
+        "float": [
+            "c_float",
+            "c_float"
         ]
     },
     "expm1": {
@@ -929,6 +933,10 @@
         "double": [
             "c_double",
             "c_double"
+        ],
+        "float": [
+            "c_float",
+            "c_float"
         ]
     },
     "lpmv": {

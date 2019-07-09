@@ -284,6 +284,7 @@ Common values are ``int32`` and ``int64``.
 - :data:`scipy.special.expit`::
 
     float64 expit(float64)
+    float32 expit(float32)
 
 - :data:`scipy.special.expm1`::
 
@@ -514,6 +515,7 @@ Common values are ``int32`` and ``int64``.
 - :data:`scipy.special.logit`::
 
     float64 logit(float64)
+    float32 logit(float32)
 
 - :data:`scipy.special.lpmv`::
 
